@@ -426,13 +426,13 @@ var flareJson = {
  ]
 };
 
-d3.json(flareJson, function(json) {
-  root = json;
+
+  root = flareJson;
   root.fixed = true;
   root.x = w / 2;
   root.y = h / 2 - 80;
   update();
-});
+
 
 function update() {
   var nodes = flatten(root),
