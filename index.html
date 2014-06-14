@@ -80,15 +80,15 @@ function update() {
       .attr("y2", function(d) { return d.target.y; });
 
   // Exit any old links.
-  link.exit().remove();
+//  link.exit().remove();
 
   // Update the nodes…
   node = vis.selectAll("circle.node")
       .data(nodes, function(d) { return d.id; })
       .style("fill", color);
 
-  node.transition()
-      .attr("r", function(d) { return d.children ? 4.5 : Math.sqrt(d.size) / 10; });
+//  node.transition()
+  //    .attr("r", function(d) { return d.children ? 4.5 : Math.sqrt(d.size) / 10; });
 
   // Enter any new nodes.
   node.enter().append("svg:circle")
