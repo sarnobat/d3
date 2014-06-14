@@ -36,10 +36,11 @@ var w = 1280,
     root;
 
 var force = d3.layout.force()
-    .on("tick", tick)
-    .charge(function(d) { return d._children ? -d.size / 100 : -30; })
-    .linkDistance(function(d) { return d.target._children ? 80 : 30; })
-    .size([w, h - 160]);
+    .on("tick", tick) // Without this there is no recursive layout, and the graph just stays in one disorganized mess
+//    .charge(function(d) { return d._children ? -d.size / 100 : -30; })
+//    .linkDistance(function(d) { return d.target._children ? 80 : 30; })
+    .size([w, h - 160])
+    ;
 
 var vis = d3.select("body").append("svg:svg")
     .attr("width", w)
@@ -48,13 +49,13 @@ var vis = d3.select("body").append("svg:svg")
 var flareJson = getData();
 
 
-
+{
   root = flareJson;
   root.fixed = true;
   root.x = w / 2;
   root.y = h / 2 - 80;
   update();
-
+}
 
 function update() {
   var nodes = flatten(root),
