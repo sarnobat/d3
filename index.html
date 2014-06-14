@@ -35,6 +35,7 @@ var w = 1280,
     link,
     root;
 
+
 var force = d3.layout.force()
     .on("tick", tick) // Without this there is no recursive layout, and the graph just stays in one disorganized mess
 //    .charge(function(d) { return d._children ? -d.size / 100 : -30; })
@@ -61,7 +62,7 @@ function getData() {
   update();
 }
 
-// When an internal node is clicked to collapse the children
+// When an internal node is clicked to collapse the children, or initial load
 function update() {
   var nodes = flatten(root),
       links = d3.layout.tree().links(nodes);
@@ -130,6 +131,7 @@ function color(d) {
 
 // Toggle children on click.
 function click(d) {
+ console.debug(d.name);
   if (d.children) {
     d._children = d.children;
     d.children = null;
